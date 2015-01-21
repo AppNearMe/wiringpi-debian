@@ -1,0 +1,28 @@
+Fix devlib makefile
+--- a/devLib/Makefile
++++ b/devLib/Makefile
+@@ -47,7 +47,7 @@
+ 
+ OBJ	=	$(SRC:.c=.o)
+ 
+-all:		$(DYNAMIC)
++all:		$(DYNAMIC) static
+ 
+ static:		$(STATIC)
+ 
+@@ -90,12 +90,12 @@
+ 	@install -m 0644 piGlow.h		$(DESTDIR)$(PREFIX)/include
+ 
+ .PHONY:	install
+-install:	$(DYNAMIC) install-headers
++install:	$(DYNAMIC) install-static install-headers
+ 	@echo "[Install Dynamic Lib]"
+ 	@install -m 0755 -d						$(DESTDIR)$(PREFIX)/lib
+ 	@install -m 0755 libwiringPiDev.so.$(VERSION)			$(DESTDIR)$(PREFIX)/lib/libwiringPiDev.so.$(VERSION)
+-	@ln -sf $(DESTDIR)$(PREFIX)/lib/libwiringPiDev.so.$(VERSION)	$(DESTDIR)/lib/libwiringPiDev.so
+-	@ldconfig
++	@ln -sf $(DESTDIR)$(PREFIX)/lib/libwiringPiDev.so.$(VERSION)	$(DESTDIR)$(PREFIX)/lib/libwiringPiDev.so
++	@ldconfig -n
+ 
+ .PHONY:	install-static
+ install-static:	$(STATIC) install-headers

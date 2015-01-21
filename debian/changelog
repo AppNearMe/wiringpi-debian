@@ -1,0 +1,5 @@
+libwiringpi (2.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Donatien Garnier <donatien.garnier@appnearme.com>  Sun, 11 Jan 2015 20:33:23 +0000

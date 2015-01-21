@@ -1,0 +1,13 @@
+Add missing mkdir call in gpio makefile and remove chown call
+--- a/gpio/Makefile
++++ b/gpio/Makefile
+@@ -65,8 +65,8 @@
+ .PHONY:	install
+ install:
+ 	@echo "[Install]"
++	@mkdir -p		$(DESTDIR)$(PREFIX)/bin
+ 	@cp gpio		$(DESTDIR)$(PREFIX)/bin
+-	@chown root.root	$(DESTDIR)$(PREFIX)/bin/gpio
+ 	@chmod 4755		$(DESTDIR)$(PREFIX)/bin/gpio
+ 	@mkdir -p		$(DESTDIR)$(PREFIX)/man/man1
+ 	@cp gpio.1		$(DESTDIR)$(PREFIX)/man/man1

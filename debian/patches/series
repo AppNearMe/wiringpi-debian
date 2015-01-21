@@ -1,0 +1,4 @@
+fix-wiringpi-makefile.patch
+add-makefile.patch
+fix-devlib-makefile.patch
+fix-gpio-makefile.patch

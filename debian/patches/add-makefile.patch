@@ -1,0 +1,39 @@
+Add Makefile in root directory
+
+--- /dev/null
++++ b/Makefile
+@@ -0,0 +1,34 @@
++DIRS = wiringPi devLib gpio
++BUILDDIRS = $(DIRS:%=build-%)
++INSTALLDIRS = $(DIRS:%=install-%)
++UNINSTALLDIRS = $(DIRS:%=uninstall-%)
++CLEANDIRS = $(DIRS:%=clean-%)
++PREFIX=/usr
++
++all: $(BUILDDIRS)
++$(DIRS): $(BUILDDIRS)
++$(BUILDDIRS):
++	$(MAKE) -C $(@:build-%=%)
++
++install: $(INSTALLDIRS) all
++$(INSTALLDIRS):
++	$(MAKE) -C $(@:install-%=%) install DESTDIR=$(DESTDIR) PREFIX=$(PREFIX)
++
++uninstall: $(UNINSTALLDIRS) all
++$(UNINSTALLDIRS):
++	$(MAKE) -C $(@:uninstall-%=%) uninstall
++
++test: ;
++
++clean: $(CLEANDIRS)
++$(CLEANDIRS):
++	$(MAKE) -C $(@:clean-%=%) clean
++
++
++.PHONY: subdirs $(DIRS)
++.PHONY: subdirs $(BUILDDIRS)
++.PHONY: subdirs $(INSTALLDIRS)
++.PHONY: subdirs $(UNINSTALLDIRS)
++.PHONY: subdirs $(CLEANDIRS)
++.PHONY: all install clean test
++
